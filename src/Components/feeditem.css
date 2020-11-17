@@ -1,0 +1,16 @@
+.item:first-child {
+  margin-top: 50px;
+}
+
+.item {
+  padding: 7px;
+}
+
+.item a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.item a:hover {
+  color: inherit;
+}

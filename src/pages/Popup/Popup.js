@@ -27,11 +27,7 @@ class Popup extends Component {
   }
 
   render() {
-    return (
-      <div className="holder pure-u-1">
-        {Object.keys(this.state.feeds).map(key => <FeedTab key={key} name={key} items={this.state.feeds[key]} />)}
-      </div>
-    );
+    return <>{ this.state.feeds && <FeedTab items={this.state.feeds}/>}</>
   }
 }
 

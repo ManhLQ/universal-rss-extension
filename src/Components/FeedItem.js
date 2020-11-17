@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './feeditem.css';
 class FeedItem extends Component {
   constructor(props) {
     super(props);
@@ -9,9 +9,7 @@ class FeedItem extends Component {
     const {title, link} = this.props.feed;
     return (
       <div className="item">
-        <div className="item-title">
-          <a href={link} target="_blank" rel="noopener">{title}</a>
-        </div>
+        <a href={link} target="_blank" rel="noopener" title={title}>{title}</a>
       </div>
     )
   }
