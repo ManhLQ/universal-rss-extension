@@ -26,8 +26,15 @@ class Popup extends Component {
     });
   }
 
+  handleOpenOptionPage = () => {
+    chrome.runtime.openOptionsPage();
+  }
+
   render() {
-    return <>{ this.state.feeds && <FeedTab items={this.state.feeds}/>}</>
+    return (<>
+    { this.state.feeds && <FeedTab items={this.state.feeds}/>}
+    <button onClick={this.handleOpenOptionPage}>Option</button>
+    </>);
   }
 }
 

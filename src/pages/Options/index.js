@@ -1,4 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Options from './Options';
 
-ReactDOM.render(<h1>aa</h1>, document.querySelector('#app'));
+ReactDOM.render(<Options />, document.querySelector('#app'));
