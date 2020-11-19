@@ -11,16 +11,11 @@ class Options extends Component {
   }
 
   componentDidMount() {
-    const fetched = this.fetchData();
-    console.log(fetched);
-    this.setState(state => {
-      return { sources: fetched };
-    })
-    ;
-  }
-
-  fetchData = () => {
-    return JSON.parse(this.dataStore.get('configs', 'sources'));
+    this.dataStore.get('configs', 'sources', result => {
+      this.setState(state => {
+        return { sources: result['options.configs.sources'] };
+      });
+    });
   }
 
   handleNameChange = (name, value) => {
