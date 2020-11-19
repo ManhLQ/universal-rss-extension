@@ -24,16 +24,16 @@ class FeedTab extends Component {
       <div className="tabs is-medium tabs-fixed">
         <ul>
         { tabNames.map((item, index) =>
-          <li className={this.state.active == index ? "is-active" : "" }>
-            <a key={index} href="#" onClick={(e) => this.handleTabchange(index, e)}>{item}</a>
+          <li key={index} className={this.state.active == index ? "is-active" : "" }>
+            <a href="#" onClick={(e) => this.handleTabchange(index, e)}>{item}</a>
           </li>
         )}
         </ul>
       </div>
       {
         tabNames.map((item, index) =>
-          <div className={"tab-content " + (this.state.active == index ? 'active' : '')}>
-            {feeds[item].map(feed => <FeedItem key={index} feed={feed} />)}
+          <div key={index} className={"tab-content " + (this.state.active == index ? 'active' : '')}>
+            {feeds[item].map((feed, idx) => <FeedItem key={idx} feed={feed} />)}
           </div>)
       }
       </>

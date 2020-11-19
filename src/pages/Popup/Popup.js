@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RequestClient from '../../utils/client';
 import * as CONS from '../../utils/constant';
 import FeedTab from '../../Components/FeedTab';
+import LocalStorageDataStore from '../../services/datastore.service';
 import './popup.css';
 
 class Popup extends Component {
@@ -10,19 +11,20 @@ class Popup extends Component {
     this.state = {
       feeds: {}
     }
+    this.dataStore = new LocalStorageDataStore('options');
   }
 
   componentDidMount() {
     const req = new RequestClient();
-    const urls = CONS.default.urls;
-    const currentFeeds = this.state.feeds;
+    const urls = JSON.parse(this.dataStore.get('configs', 'sources'));
 
     urls.forEach(async item => {
       const fetchedItems = await req.getFeeds(item.src);
-      currentFeeds[item.name] = fetchedItems;
-      this.setState({
-        feeds: currentFeeds
+      this.setState(state => {
+        state.feeds[item.name] = fetchedItems;
+        return {feeds: state.feeds};
       });
+      this.dataStore.save('feeds', item.name, JSON.stringify(fetchedItems));
     });
   }
 

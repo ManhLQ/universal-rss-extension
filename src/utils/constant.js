@@ -11,5 +11,9 @@ export default {
       name: 'Voz',
       src: 'https://voz.vn/f/diem-bao.33/index.rss'
     },
+    {
+      name: 'F319',
+      src: 'http://f319.com/forums/-/index.rss'
+    }
   ]
 }

@@ -1,37 +1,26 @@
 import React, { Component } from 'react';
 import OptionTable from '../../Components/OptionTable';
-
+import LocalStorageDataStore from '../../services/datastore.service';
 class Options extends Component {
   constructor(props) {
     super(props);
     this.state = {
       sources: {}
     }
+    this.dataStore = new LocalStorageDataStore('options');
   }
 
   componentDidMount() {
-    this.fetchData().then(res => {
-      this.setState(state => {
-        return { sources: res };
-      })
-    });
+    const fetched = this.fetchData();
+    console.log(fetched);
+    this.setState(state => {
+      return { sources: fetched };
+    })
+    ;
   }
 
   fetchData = () => {
-    const sampleData = [{
-      name: 'VNE',
-      src: 'https://vnexpress.net/rss/tin-xem-nhieu.rss'
-    },
-    {
-      name: 'CafeF',
-      src: 'https://cafef.vn/trang-chu.rss'
-    },
-    {
-      name: 'Voz',
-      src: 'https://voz.vn/f/diem-bao.33/index.rss'
-    },
-    ];
-    return new Promise(resolve => {setTimeout(resolve(sampleData) ,1000)});
+    return JSON.parse(this.dataStore.get('configs', 'sources'));
   }
 
   handleNameChange = (name, value) => {
